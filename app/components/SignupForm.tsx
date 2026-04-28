@@ -11,9 +11,10 @@ export default function SignupForm() {
 
     setStatus("loading");
     try {
-      await fetch("https://hook.eu1.make.com/6855twsc3gc6pl0pkfb78uvvyio639pn", {
+      const res = await fetch("https://hook.eu1.make.com/6855twsc3gc6pl0pkfb78uvvyio639pn", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        mode: "no-cors",
         body: JSON.stringify({
           email,
           kilde: "website",

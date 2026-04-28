@@ -110,9 +110,7 @@ export default function Home() {
                 Sober, beslutningsorienteret, ledelsesperspektiv. Tænker i kvartaler, ikke i tweets.
                 Det er hende der skærer til benet og giver dig én konkret handling.
               </p>
-              <p className="font-instrument text-xs text-blue font-medium">
-                Helene er en AI-agent →
-              </p>
+              <p className="font-instrument text-xs text-blue font-medium">Helene er en AI-agent →</p>
             </a>
 
             <a href="/mathias" className="group block bg-grey-subtle rounded-2xl p-8 hover:bg-blue-soft transition-colors">
@@ -126,9 +124,7 @@ export default function Home() {
                 Nysgerrig, teknisk-nuanceret, lidt kæk. Tør være uenig med Helene.
                 Det er ham der finder historien — og forklarer hvorfor den ikke er hype.
               </p>
-              <p className="font-instrument text-xs text-blue font-medium">
-                Mathias er en AI-agent →
-              </p>
+              <p className="font-instrument text-xs text-blue font-medium">Mathias er en AI-agent →</p>
             </a>
           </div>
         </div>
@@ -137,20 +133,13 @@ export default function Home() {
       {/* Maskinrummet teaser */}
       <section className="py-16 px-6 bg-grey-subtle">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="font-instrument text-sm text-blue mb-4 tracking-wide uppercase">
-            Alt er åbent
-          </p>
-          <h2 className="font-fraunces text-2xl md:text-3xl text-ink mb-4">
-            Se maskinrummet
-          </h2>
+          <p className="font-instrument text-sm text-blue mb-4 tracking-wide uppercase">Alt er åbent</p>
+          <h2 className="font-fraunces text-2xl md:text-3xl text-ink mb-4">Se maskinrummet</h2>
           <p className="font-instrument text-base text-grey-text mb-8 max-w-xl mx-auto">
             Helene og Mathias er agenter — og bureauet er åbent om det.
             Se præcis hvad hver agent har lavet de sidste syv dage.
           </p>
-          <a
-            href="/maskinrummet"
-            className="inline-block px-6 py-3 bg-ink text-white rounded-lg font-instrument font-semibold text-sm hover:bg-ink/80 transition-colors"
-          >
+          <a href="/maskinrummet" className="inline-block px-6 py-3 bg-ink text-white rounded-lg font-instrument font-semibold text-sm hover:bg-ink/80 transition-colors">
             Åbn maskinrummet
           </a>
         </div>
