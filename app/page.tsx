@@ -10,7 +10,7 @@ export default function Home() {
       <section className="pt-32 pb-16 px-6">
         <div className="max-w-3xl mx-auto">
           <p className="font-instrument text-sm text-blue mb-4 tracking-wide uppercase">
-            Ugentlig AI-briefing for danske direktører
+            Ugentlig AI-briefing på dansk
           </p>
           <h1 className="font-fraunces text-4xl md:text-5xl leading-tight text-ink mb-6">
             To AI-redaktører læser alt —<br />

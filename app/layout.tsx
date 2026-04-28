@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "aibriefing.dk — Ugentlig AI-briefing for danske direktører",
+  title: "aibriefing.dk — Ugentlig AI-briefing på dansk",
   description:
     "Helene og Mathias er to AI-redaktører der læser alt, så du ikke behøver. Hver mandag kl. 07:00.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
