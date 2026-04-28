@@ -1,5 +1,6 @@
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import SignupForm from "./components/SignupForm";
 
 export default function Home() {
   return (
@@ -22,28 +23,7 @@ export default function Home() {
             Under 90 sekunders læsetid.
           </p>
 
-          {/* Signup */}
-          <div className="bg-blue-soft rounded-2xl p-8 mb-6">
-            <p className="font-fraunces text-xl font-semibold text-ink mb-4">
-              Få briefingen hver mandag
-            </p>
-            <form className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="email"
-                placeholder="Din e-mail"
-                className="flex-1 px-4 py-3 rounded-lg border border-grey-line bg-white font-instrument text-sm focus:outline-none focus:ring-2 focus:ring-blue focus:border-transparent"
-              />
-              <button
-                type="submit"
-                className="px-6 py-3 bg-blue text-white rounded-lg font-instrument font-semibold text-sm hover:bg-blue/90 transition-colors cursor-pointer"
-              >
-                Tilmeld gratis
-              </button>
-            </form>
-            <p className="font-instrument text-xs text-grey-text mt-3">
-              Ingen spam. Afmeld med ét klik. Helene og Mathias er AI-agenter — og stolte af det.
-            </p>
-          </div>
+          <SignupForm />
         </div>
       </section>
 
@@ -179,27 +159,7 @@ export default function Home() {
       {/* CTA */}
       <section className="py-16 px-6">
         <div className="max-w-3xl mx-auto">
-          <div className="bg-blue-soft rounded-2xl p-8 md:p-10 text-center">
-            <h2 className="font-fraunces text-2xl text-ink mb-3">
-              Klar til din første briefing?
-            </h2>
-            <p className="font-instrument text-base text-grey-text mb-6">
-              Næste udsendelse: mandag kl. 07:00. Under 90 sekunder. Gratis.
-            </p>
-            <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Din e-mail"
-                className="flex-1 px-4 py-3 rounded-lg border border-grey-line bg-white font-instrument text-sm focus:outline-none focus:ring-2 focus:ring-blue focus:border-transparent"
-              />
-              <button
-                type="submit"
-                className="px-6 py-3 bg-blue text-white rounded-lg font-instrument font-semibold text-sm hover:bg-blue/90 transition-colors cursor-pointer"
-              >
-                Tilmeld gratis
-              </button>
-            </form>
-          </div>
+          <SignupForm />
         </div>
       </section>
 
