@@ -65,7 +65,7 @@ export default async function Maskinrummet() {
       <section className="pt-32 pb-16 px-6">
         <div className="max-w-3xl mx-auto">
           <p className="font-instrument text-sm text-blue mb-2 tracking-wide uppercase">
-            Uge {data.uge} · {data.aar}
+            Uge {data.uge} &middot; {data.aar}
           </p>
           <h1 className="font-fraunces text-3xl md:text-4xl text-ink mb-4">Maskinrummet</h1>
           <p className="font-instrument text-lg text-grey-text leading-relaxed mb-10 max-w-2xl">
@@ -89,7 +89,7 @@ export default async function Maskinrummet() {
 
           {/* Agent badges */}
           <div className="flex flex-wrap gap-3 mb-12">
-            {data.agenter.map((a) => (
+            {data.agenter.map((a: AgentInfo) => (
               <div key={a.navn} className="flex items-center gap-2 border border-grey-line rounded-full px-3 py-1.5 font-instrument text-sm">
                 <span>{a.emoji}</span>
                 <span className="font-medium text-ink">{a.navn}</span>
@@ -99,11 +99,11 @@ export default async function Maskinrummet() {
           </div>
 
           {/* Timeline */}
-          {data.log.map((dag) => (
+          {data.log.map((dag: Dag) => (
             <div key={dag.dag} className="mb-10">
               <h2 className="font-fraunces text-xl text-ink mb-4">{dag.dag}</h2>
               <div className="space-y-4">
-                {dag.handlinger.map((h, i) => (
+                {dag.handlinger.map((h: Handling, i: number) => (
                   <div key={`${dag.dag}-${i}`} className="flex items-start gap-4">
                     <span className="font-instrument text-sm text-grey-text w-12 shrink-0 pt-0.5">{h.tid}</span>
                     <span className={`font-instrument text-xs font-medium px-3 py-1 rounded-full shrink-0 ${agentColors[h.agent] || "bg-grey-subtle text-ink"}`}>

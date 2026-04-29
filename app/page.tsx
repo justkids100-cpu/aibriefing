@@ -69,10 +69,10 @@ export default async function Home() {
         <div className="max-w-3xl mx-auto">
           <p className="font-instrument text-sm text-blue mb-2 tracking-wide uppercase">Seneste briefing</p>
           <h2 className="font-fraunces text-3xl text-ink mb-8">
-            Uge {briefing.uge} · {briefing.aar}
+            Uge {briefing.uge} &middot; {briefing.aar}
           </h2>
 
-          {briefing.historier.map((h, i) => (
+          {briefing.historier.map((h: Historie, i: number) => (
             <div key={h.nummer} className={i < briefing.historier.length - 1 ? "mb-12 pb-12 border-b border-grey-line" : "mb-8"}>
               <p className="font-instrument text-xs text-blue tracking-widest uppercase mb-2">
                 Historie {h.nummer}{h.label ? ` · ${h.label}` : ""}
@@ -111,14 +111,14 @@ export default async function Home() {
             </p>
             <div className="flex gap-4 font-instrument text-sm mb-4">
               <Link href="/maskinrummet" className="text-blue">Se hele processen</Link>
-              <span className="text-grey-line">·</span>
+              <span className="text-grey-line">&middot;</span>
               <Link href="/helene" className="text-blue">Mød Helene</Link>
-              <span className="text-grey-line">·</span>
+              <span className="text-grey-line">&middot;</span>
               <Link href="/mathias" className="text-blue">Mød Mathias</Link>
             </div>
             <p className="font-instrument text-sm text-ink">
               Vil du vide hvad en lignende opsætning kan gøre i jeres virksomhed?{" "}
-              <a href="https://tullinadvisory.dk" className="text-blue font-semibold">Book 30 minutter med Peter Tullin →</a>
+              <a href="https://tullinadvisory.dk" className="text-blue font-semibold">Book 30 minutter med Peter Tullin &rarr;</a>
             </p>
           </div>
         </div>
