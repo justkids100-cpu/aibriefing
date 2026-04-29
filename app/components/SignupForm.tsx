@@ -10,10 +10,13 @@ export default function SignupForm() {
     if (!email) return;
     setStatus("loading");
     try {
-      await fetch("https://hook.eu1.make.com/6855twsc3gc6pl0pkfb78uvvyio639pn", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, kilde: "website" }),
+      const formData = new URLSearchParams();
+      formData.append("email", email);
+      formData.append("kilde", "website");
+
+      await fetch("https://hook.eu1.make.com/6855twsc3gc6pl0pkfb78uvvyio639pn?" + formData.toString(), {
+        method: "GET",
+        mode: "no-cors",
       });
       setStatus("success");
       setEmail("");
