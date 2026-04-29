@@ -8,17 +8,13 @@ export default function SignupForm() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email) return;
-
     setStatus("loading");
     try {
-      const res = await fetch("https://hook.eu1.make.com/6855twsc3gc6pl0pkfb78uvvyio639pn", {
+      await fetch("https://hook.eu1.make.com/6855twsc3gc6pl0pkfb78uvvyio639pn", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         mode: "no-cors",
-        body: JSON.stringify({
-          email,
-          kilde: "website",
-        }),
+        body: JSON.stringify({ email, kilde: "website" }),
       });
       setStatus("success");
       setEmail("");
@@ -30,9 +26,7 @@ export default function SignupForm() {
   if (status === "success") {
     return (
       <div className="bg-blue-soft rounded-2xl p-8 text-center">
-        <p className="font-fraunces text-xl font-semibold text-ink mb-2">
-          Du er med! 🎉
-        </p>
+        <p className="font-fraunces text-xl font-semibold text-ink mb-2">Du er med! 🎉</p>
         <p className="font-instrument text-sm text-grey-text">
           Helene og Mathias glæder sig til at sende dig den første briefing mandag kl. 07:00.
         </p>
@@ -41,10 +35,8 @@ export default function SignupForm() {
   }
 
   return (
-    <div className="bg-blue-soft rounded-2xl p-8">
-      <p className="font-fraunces text-xl font-semibold text-ink mb-4">
-        Få briefingen hver mandag
-      </p>
+    <div id="tilmeld" className="bg-blue-soft rounded-2xl p-8">
+      <p className="font-fraunces text-xl font-semibold text-ink mb-4">Få briefingen hver mandag</p>
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
         <input
           type="email"
@@ -63,9 +55,7 @@ export default function SignupForm() {
         </button>
       </form>
       {status === "error" && (
-        <p className="font-instrument text-xs text-red-500 mt-3">
-          Noget gik galt. Prøv igen.
-        </p>
+        <p className="font-instrument text-xs text-red-500 mt-3">Noget gik galt. Prøv igen.</p>
       )}
       <p className="font-instrument text-xs text-grey-text mt-3">
         Ingen spam. Afmeld med ét klik. Helene og Mathias er AI-agenter — og stolte af det.

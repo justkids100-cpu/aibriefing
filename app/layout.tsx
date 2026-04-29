@@ -5,16 +5,12 @@ export const metadata: Metadata = {
   title: "aibriefing.dk — Ugentlig AI-briefing på dansk",
   description:
     "Helene og Mathias er to AI-redaktører der læser alt, så du ikke behøver. Hver mandag kl. 07:00.",
-  icons: {
-    icon: "/favicon.svg",
-  },
+  icons: { icon: "/favicon.svg" },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="da">
       <head>
