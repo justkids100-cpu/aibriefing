@@ -33,14 +33,14 @@ export default async function Home() {
     <div className="min-h-screen bg-white">
       {/* Nav */}
       <nav className="border-b border-gray-200 px-6 py-4 flex items-center justify-between max-w-4xl mx-auto">
-        <Link href="/" className="font-bold text-xl" style={{ fontFamily: "Georgia, serif" }}>
+        <Link href="/" className="text-lg font-semibold" style={{ fontFamily: "Georgia, serif" }}>
           aibriefing<span className="text-blue-600">.</span>dk
         </Link>
         <div className="flex items-center gap-6 text-sm" style={{ fontFamily: "Calibri, Arial, sans-serif" }}>
           <Link href="/saadan-virker-det" className="text-gray-600 hover:text-black">Sådan virker det</Link>
           <Link href="/maskinrummet" className="text-gray-600 hover:text-black">Maskinrummet</Link>
           <Link href="/for-virksomheder" className="text-gray-600 hover:text-black">For virksomheder</Link>
-          <Link href="#signup" className="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-red-600">Tilmeld</Link>
+          <Link href="#signup" className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-700">Tilmeld</Link>
         </div>
       </nav>
 
