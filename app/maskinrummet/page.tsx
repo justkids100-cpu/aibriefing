@@ -1,3 +1,5 @@
+import Nav from "../components/Nav";
+import Footer from "../components/Footer";
 import Link from "next/link";
 import { promises as fs } from "fs";
 import path from "path";
@@ -40,103 +42,94 @@ async function getAgentLog(): Promise<AgentLog> {
 }
 
 const agentColors: Record<string, string> = {
-  Ole: "bg-gray-100 text-gray-800",
-  Mathias: "bg-blue-600 text-white",
-  Helene: "bg-gray-900 text-white",
-  Diana: "bg-blue-400 text-white",
-  Mads: "bg-blue-300 text-white",
-  David: "bg-gray-100 text-gray-800",
+  Ole: "bg-grey-subtle text-ink border border-grey-line",
+  Mathias: "bg-blue text-white",
+  Helene: "bg-ink text-white",
+  Diana: "bg-blue/70 text-white",
+  Mads: "bg-blue/50 text-white",
+  David: "bg-grey-subtle text-ink border border-grey-line",
+};
+
+export const metadata = {
+  title: "Maskinrummet — aibriefing.dk",
+  description: "Se hvad 6 AI-agenter lavede denne uge. Hver handling logget.",
 };
 
 export default async function Maskinrummet() {
   const data = await getAgentLog();
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Nav */}
-      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-grey-line z-50">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="font-fraunces text-xl font-semibold text-ink">
-            aibriefing<span className="text-blue">.dk</span>
-          </Link>
-          <div className="hidden md:flex items-center gap-6">
-            <Link href="/saadan-virker-det" className="font-instrument text-sm hover:text-ink transition-colors text-grey-text">Sådan virker det</Link>
-            <Link href="/maskinrummet" className="font-instrument text-sm hover:text-ink transition-colors text-grey-text">Maskinrummet</Link>
-            <Link href="/for-virksomheder" className="font-instrument text-sm hover:text-ink transition-colors text-grey-text">For virksomheder</Link>
-            <Link href="/#tilmeld" className="px-4 py-2 bg-blue text-white rounded-lg font-instrument font-semibold text-sm hover:bg-blue/90 transition-colors">Tilmeld</Link>
+    <main className="min-h-screen bg-white">
+      <Nav />
+
+      <section className="pt-32 pb-16 px-6">
+        <div className="max-w-3xl mx-auto">
+          <p className="font-instrument text-sm text-blue mb-2 tracking-wide uppercase">
+            Uge {data.uge} · {data.aar}
+          </p>
+          <h1 className="font-fraunces text-3xl md:text-4xl text-ink mb-4">Maskinrummet</h1>
+          <p className="font-instrument text-lg text-grey-text leading-relaxed mb-10 max-w-2xl">
+            {data["resumé"]}
+          </p>
+
+          {/* Metrics */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+            {[
+              { label: "agenter aktive", value: data.metrics.agenter_aktive },
+              { label: "handlinger", value: data.metrics.handlinger },
+              { label: "abonnenter", value: data.metrics.abonnenter },
+              { label: "API-omkostning", value: data.metrics.api_omkostning },
+            ].map((m) => (
+              <div key={m.label} className="border border-grey-line rounded-xl p-4 text-center">
+                <p className="font-fraunces text-2xl text-ink">{m.value}</p>
+                <p className="font-instrument text-xs text-grey-text">{m.label}</p>
+              </div>
+            ))}
           </div>
-        </div>
-      </nav>
 
-      <section className="max-w-3xl mx-auto px-6 pt-24 pb-12">
-        <p className="text-blue-600 text-sm font-medium tracking-widest mb-2" style={{ fontFamily: "Calibri, Arial, sans-serif" }}>
-          UGE {data.uge} · {data.aar}
-        </p>
-        <h1 className="text-4xl font-bold mb-4" style={{ fontFamily: "Georgia, serif" }}>Maskinrummet</h1>
-        <p className="text-gray-500 text-lg leading-relaxed mb-10" style={{ fontFamily: "Georgia, serif" }}>
-          {data["resumé"]}
-        </p>
+          {/* Agent badges */}
+          <div className="flex flex-wrap gap-3 mb-12">
+            {data.agenter.map((a) => (
+              <div key={a.navn} className="flex items-center gap-2 border border-grey-line rounded-full px-3 py-1.5 font-instrument text-sm">
+                <span>{a.emoji}</span>
+                <span className="font-medium text-ink">{a.navn}</span>
+                <span className="text-grey-text">{a.handlinger} handlinger</span>
+              </div>
+            ))}
+          </div>
 
-        {/* Metrics */}
-        <div className="grid grid-cols-4 gap-4 mb-10">
-          {[
-            { label: "agenter aktive", value: data.metrics.agenter_aktive },
-            { label: "handlinger", value: data.metrics.handlinger },
-            { label: "abonnenter", value: data.metrics.abonnenter },
-            { label: "API-omkostning", value: data.metrics.api_omkostning },
-          ].map((m) => (
-            <div key={m.label} className="border border-gray-200 rounded-xl p-4 text-center">
-              <p className="text-2xl font-bold" style={{ fontFamily: "Georgia, serif" }}>{m.value}</p>
-              <p className="text-xs text-gray-500" style={{ fontFamily: "Calibri, Arial, sans-serif" }}>{m.label}</p>
+          {/* Timeline */}
+          {data.log.map((dag) => (
+            <div key={dag.dag} className="mb-10">
+              <h2 className="font-fraunces text-xl text-ink mb-4">{dag.dag}</h2>
+              <div className="space-y-4">
+                {dag.handlinger.map((h, i) => (
+                  <div key={`${dag.dag}-${i}`} className="flex items-start gap-4">
+                    <span className="font-instrument text-sm text-grey-text w-12 shrink-0 pt-0.5">{h.tid}</span>
+                    <span className={`font-instrument text-xs font-medium px-3 py-1 rounded-full shrink-0 ${agentColors[h.agent] || "bg-grey-subtle text-ink"}`}>
+                      {h.agent}
+                    </span>
+                    <p className="font-instrument text-sm text-ink leading-relaxed">{h.beskrivelse}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
-        </div>
 
-        {/* Agent badges */}
-        <div className="flex flex-wrap gap-3 mb-12">
-          {data.agenter.map((a) => (
-            <div key={a.navn} className="flex items-center gap-2 border border-gray-200 rounded-full px-3 py-1.5 text-sm" style={{ fontFamily: "Calibri, Arial, sans-serif" }}>
-              <span>{a.emoji}</span>
-              <span className="font-medium">{a.navn}</span>
-              <span className="text-gray-400">{a.handlinger} handlinger</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Timeline */}
-        {data.log.map((dag) => (
-          <div key={dag.dag} className="mb-10">
-            <h2 className="text-xl font-bold mb-4" style={{ fontFamily: "Georgia, serif" }}>{dag.dag}</h2>
-            <div className="space-y-4">
-              {dag.handlinger.map((h, i) => (
-                <div key={`${dag.dag}-${i}`} className="flex items-start gap-4">
-                  <span className="text-sm text-gray-400 w-12 shrink-0 pt-0.5" style={{ fontFamily: "Calibri, Arial, sans-serif" }}>{h.tid}</span>
-                  <span className={`text-xs font-medium px-3 py-1 rounded-full shrink-0 ${agentColors[h.agent] || "bg-gray-100 text-gray-800"}`} style={{ fontFamily: "Calibri, Arial, sans-serif" }}>
-                    {h.agent}
-                  </span>
-                  <p className="text-sm leading-relaxed" style={{ fontFamily: "Georgia, serif" }}>{h.beskrivelse}</p>
-                </div>
-              ))}
-            </div>
+          {/* Forklaring */}
+          <div className="bg-grey-subtle rounded-xl p-8 mt-8">
+            <h3 className="font-fraunces text-lg text-ink mb-2">Hvad du ser her</h3>
+            <p className="font-instrument text-sm text-grey-text leading-relaxed">
+              Hver linje er en handling udført af en agent. Loggen opdateres automatisk hver uge når en ny briefing produceres. Al data hentes fra agent-loggen. Ingen mennesker redigerer denne side.
+            </p>
+            <p className="font-instrument text-sm text-grey-text leading-relaxed mt-2">
+              aibriefing.dk er bygget af <a href="https://tullinadvisory.dk" className="text-blue">Tullin Advisory</a> som et åbent eksempel på hvad AI-agenter kan i praksis.
+            </p>
           </div>
-        ))}
-
-        {/* Forklaring */}
-        <div className="bg-gray-50 rounded-xl p-8 mt-8">
-          <h3 className="text-lg font-bold mb-2" style={{ fontFamily: "Georgia, serif" }}>Hvad du ser her</h3>
-          <p className="text-sm text-gray-600 leading-relaxed" style={{ fontFamily: "Georgia, serif" }}>
-            Hver linje er en handling udført af en agent. Loggen opdateres automatisk hver uge når en ny briefing produceres. Al data hentes fra agent-loggen. Ingen mennesker redigerer denne side.
-          </p>
-          <p className="text-sm text-gray-600 leading-relaxed mt-2" style={{ fontFamily: "Georgia, serif" }}>
-            aibriefing.dk er bygget af <a href="https://tullinadvisory.dk" className="text-blue-600">Tullin Advisory</a> som et åbent eksempel på hvad AI-agenter kan i praksis.
-          </p>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-gray-200 py-8 text-center text-sm text-gray-400" style={{ fontFamily: "Calibri, Arial, sans-serif" }}>
-        <p>aibriefing.dk · Bygget af <a href="https://tullinadvisory.dk" className="text-gray-500">Tullin Advisory</a></p>
-      </footer>
-    </div>
+      <Footer />
+    </main>
   );
 }
