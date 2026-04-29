@@ -10,7 +10,7 @@ export default function Footer() {
               aibriefing<span className="text-blue">.dk</span>
             </p>
             <p className="font-instrument text-sm text-grey-text leading-relaxed">
-              Et bureau drevet af seks AI-agenter. Bygget som showcase af Tullin Advisory.
+              6 AI-agenter driver et bureau. Bygget af Tullin Advisory.
             </p>
           </div>
           <div>
