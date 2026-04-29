@@ -1,0 +1,125 @@
+{
+  "uge": 18,
+  "aar": 2026,
+  "resumé": "Denne uge producerede 6 agenter en briefing med 3 historier: Googles Anthropic-investering, EU AI Act-forhandlinger og Pentagons leverandørskifte. Her er hvad der skete, time for time.",
+  "metrics": {
+    "agenter_aktive": 6,
+    "handlinger": 14,
+    "abonnenter": 52,
+    "api_omkostning": "$2.41"
+  },
+  "agenter": [
+    {
+      "navn": "Ole",
+      "emoji": "🎯",
+      "handlinger": 3
+    },
+    {
+      "navn": "Mathias",
+      "emoji": "🔍",
+      "handlinger": 3
+    },
+    {
+      "navn": "Helene",
+      "emoji": "✍️",
+      "handlinger": 2
+    },
+    {
+      "navn": "Diana",
+      "emoji": "🎨",
+      "handlinger": 1
+    },
+    {
+      "navn": "Mads",
+      "emoji": "📣",
+      "handlinger": 2
+    },
+    {
+      "navn": "David",
+      "emoji": "⚙️",
+      "handlinger": 3
+    }
+  ],
+  "log": [
+    {
+      "dag": "Mandag",
+      "handlinger": [
+        {
+          "tid": "06:00",
+          "agent": "Ole",
+          "beskrivelse": "Startede ugens cyklus. Triggede Mathias' research."
+        },
+        {
+          "tid": "07:00",
+          "agent": "David",
+          "beskrivelse": "Sendte uge 17 briefing til 47 abonnenter via Resend. Åbningsrate: 62%."
+        },
+        {
+          "tid": "09:00",
+          "agent": "Mads",
+          "beskrivelse": "Publicerede LinkedIn-posts fra Helene og Mathias. Helenes post: 1.204 visninger."
+        }
+      ]
+    },
+    {
+      "dag": "Torsdag",
+      "handlinger": [
+        {
+          "tid": "08:00",
+          "agent": "Mathias",
+          "beskrivelse": "Scannede 14 historier fra 12 kilder. Top 5 sendt til Helene med scoring."
+        }
+      ]
+    },
+    {
+      "dag": "Fredag",
+      "handlinger": [
+        {
+          "tid": "16:00",
+          "agent": "Ole",
+          "beskrivelse": "Fredagsstatus: 14 agent-handlinger, 0 fejl. Abonnenter: 52."
+        },
+        {
+          "tid": "17:00",
+          "agent": "Ole",
+          "beskrivelse": "Pitch-pakke genereret. 3-slide PowerPoint + PDF. Google Drive."
+        }
+      ]
+    },
+    {
+      "dag": "Lørdag",
+      "handlinger": [
+        {
+          "tid": "09:00",
+          "agent": "Mathias",
+          "beskrivelse": "Skrev 3 historier: Google/Anthropic-investering, EU AI Act-forhandlinger, Pentagon dropper Anthropic."
+        },
+        {
+          "tid": "14:00",
+          "agent": "Helene",
+          "beskrivelse": "Reviewede Mathias' 3 historier. Godkendt. Skrev HVAD BØR DU GØRE for alle 3."
+        },
+        {
+          "tid": "16:00",
+          "agent": "Diana",
+          "beskrivelse": "Producerede 8-slide carousel + mail-header i V4-design."
+        }
+      ]
+    },
+    {
+      "dag": "Søndag",
+      "handlinger": [
+        {
+          "tid": "10:00",
+          "agent": "Helene",
+          "beskrivelse": "Final godkendelse. Alle ordgrænser overholdt. Tullin-blok og links inkluderet."
+        },
+        {
+          "tid": "20:00",
+          "agent": "David",
+          "beskrivelse": "Mail sendt via Resend til 52 abonnenter. Emne: Google satser 40 mia. USD på Anthropic."
+        }
+      ]
+    }
+  ]
+}
