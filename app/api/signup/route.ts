@@ -3,21 +3,37 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-
+    
     const res = await fetch(
-      "https://hook.eu1.make.com/6855twsc3gc6pl0pkfb78uvvyio639pn",
+      "https://api.airtable.com/v0/app6WzeDP8KVFOpWu/Abonnenter",
       {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Authorization": "Bearer REMOVED_SECRET",
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
-          email: body.email,
-          kilde: "website",
+          records: [
+            {
+              fields: {
+                email: body.email,
+                kilde: "website",
+              },
+            },
+          ],
         }),
       }
     );
 
-    return NextResponse.json({ ok: true });
-  } catch {
+    if (res.ok) {
+      return NextResponse.json({ ok: true });
+    } else {
+      const err = await res.text();
+      console.error("Airtable error:", err);
+      return NextResponse.json({ ok: false }, { status: 500 });
+    }
+  } catch (e) {
+    console.error("Signup error:", e);
     return NextResponse.json({ ok: false }, { status: 500 });
   }
 }
