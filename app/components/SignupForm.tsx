@@ -10,17 +10,14 @@ export default function SignupForm() {
     if (!email) return;
     setStatus("loading");
     try {
-      const res = await fetch("/api/signup", {
+      await fetch("https://hook.eu1.make.com/6855twsc3gc6pl0pkfb78uvvyio639pn", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        mode: "no-cors",
+        body: JSON.stringify({ email, kilde: "website" }),
       });
-      if (res.ok) {
-        setStatus("success");
-        setEmail("");
-      } else {
-        setStatus("error");
-      }
+      setStatus("success");
+      setEmail("");
     } catch {
       setStatus("error");
     }
