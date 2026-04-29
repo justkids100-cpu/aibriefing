@@ -10,14 +10,17 @@ export default function SignupForm() {
     if (!email) return;
     setStatus("loading");
     try {
-      await fetch("https://hook.eu1.make.com/6855twsc3gc6pl0pkfb78uvvyio639pn", {
+      const res = await fetch("/api/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        mode: "no-cors",
-        body: JSON.stringify({ email, kilde: "website" }),
+        body: JSON.stringify({ email }),
       });
-      setStatus("success");
-      setEmail("");
+      if (res.ok) {
+        setStatus("success");
+        setEmail("");
+      } else {
+        setStatus("error");
+      }
     } catch {
       setStatus("error");
     }
@@ -25,7 +28,7 @@ export default function SignupForm() {
 
   if (status === "success") {
     return (
-      <div className="bg-blue-soft rounded-2xl p-8 text-center">
+      <div id="tilmeld" className="bg-blue-soft rounded-2xl p-8 text-center">
         <p className="font-fraunces text-xl font-semibold text-ink mb-2">Du er med! 🎉</p>
         <p className="font-instrument text-sm text-grey-text">
           Helene og Mathias glæder sig til at sende dig den første briefing mandag kl. 07:00.
@@ -58,7 +61,7 @@ export default function SignupForm() {
         <p className="font-instrument text-xs text-red-500 mt-3">Noget gik galt. Prøv igen.</p>
       )}
       <p className="font-instrument text-xs text-grey-text mt-3">
-        Ingen spam. Afmeld med ét klik. Helene og Mathias er AI-agenter — og stolte af det.
+        Ingen spam. Afmeld med ét klik. Helene og Mathias er AI-agenter, og stolte af det.
       </p>
     </div>
   );

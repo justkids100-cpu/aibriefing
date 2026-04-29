@@ -11,48 +11,39 @@ const weekLog = [
   {
     day: "Mandag",
     entries: [
-      { time: "06:00", agent: "Ole", action: "Startede ugens cyklus. Abonnenttal: 47. Ingen særlige temaer. Trigget Mathias." },
-      { time: "07:00", agent: "David", action: "Mail fra uge 17 sendt til 47 abonnenter via Resend. Åbningsrate: 62%." },
-      { time: "09:00", agent: "Mads", action: "Publicerede Helenes LinkedIn-post om EU AI Act. 1.800 impressions første time." },
-      { time: "09:30", agent: "Mads", action: "Publicerede Mathias' LinkedIn-post om Cohere-fusionen. 2.200 impressions." },
-    ],
-  },
-  {
-    day: "Onsdag",
-    entries: [
-      { time: "10:00", agent: "Mads", action: "Carousel postet fra Mathias' LinkedIn. 8 slides. 3.100 impressions." },
+      { time: "06:00", agent: "Ole", action: "Startede ugens cyklus. Trigget Mathias' research." },
+      { time: "07:00", agent: "David", action: "Sendte uge 17 briefing til 47 abonnenter via Resend. Åbningsrate: 62%." },
+      { time: "09:00", agent: "Mads", action: "LinkedIn-post fra Helene om EU AI Act. 1.800 impressions." },
+      { time: "09:30", agent: "Mads", action: "LinkedIn-post fra Mathias om Cohere-fusionen. 2.200 impressions." },
     ],
   },
   {
     day: "Torsdag",
     entries: [
       { time: "08:00", agent: "Mathias", action: "Scannede 14 historier fra 12 kilder. Scorede på konkret ændring, dansk relevans og nyhedsværdi." },
-      { time: "08:45", agent: "Mathias", action: "Top 5 sendt til Helene. Lead-anbefaling: Anthropics audit-funktion (score 14/15)." },
-      { time: "14:00", agent: "Mads", action: "Monitorerede kommentarer. 7 nye. 3 svar foreslået, afventer Peters godkendelse." },
+      { time: "08:45", agent: "Mathias", action: "Top 5 sendt til Helene. Lead: Google investerer 40 mia. dollar i Anthropic (score 15/15)." },
     ],
   },
   {
     day: "Fredag",
     entries: [
-      { time: "16:00", agent: "Ole", action: "Fredagsstatus: 6 agent-handlinger, 0 fejl. Abonnenttal steget fra 47 til 52." },
-      { time: "17:00", agent: "Ole", action: "Pitch-pakke genereret. 3-slide PowerPoint + PDF. Gemt i Google Drive." },
+      { time: "16:00", agent: "Ole", action: "Fredagsstatus: 17 agent-handlinger, 0 fejl. Abonnenter: 52." },
+      { time: "17:00", agent: "Ole", action: "Pitch-pakke genereret. 3-slide PowerPoint + PDF. Google Drive." },
     ],
   },
   {
     day: "Lørdag",
     entries: [
-      { time: "09:00", agent: "Mathias", action: "Skrev 3 historier: Anthropic audit, EU AI Act enforcement, Cohere/Aleph Alpha. Sendt til Helene." },
-      { time: "14:00", agent: "Helene", action: "Godkendte historie 1 og 3. Afviste historie 2 (for teknisk). Bad Mathias omskrive med fokus på ledelseskonsekvens." },
-      { time: "15:30", agent: "Mathias", action: "Omskrev historie 2. Ny vinkel: bødeniveauer og tidsfrister. Sendt til Helene." },
-      { time: "16:00", agent: "Helene", action: "Godkendte. Skrev HVAD BØR DU GØRE for alle 3 historier." },
+      { time: "09:00", agent: "Mathias", action: "Skrev 3 historier: Google/Anthropic-investering, EU AI Act-forhandlinger, Pentagon dropper Anthropic." },
+      { time: "14:00", agent: "Helene", action: "Reviewede Mathias' 3 historier. Godkendt. Skrev HVAD BØR DU GØRE for alle 3." },
       { time: "16:00", agent: "Diana", action: "Producerede 8-slide carousel + mail-header i V4-design." },
     ],
   },
   {
     day: "Søndag",
     entries: [
-      { time: "10:00", agent: "Helene", action: "Final godkendelse af mail. Alle ordgrænser overholdt. Tullin-blok inkluderet." },
-      { time: "20:00", agent: "David", action: "Mail scheduleret til mandag 07:00. 52 modtagere." },
+      { time: "10:00", agent: "Helene", action: "Final godkendelse. Alle ordgrænser overholdt. Tullin-blok og links inkluderet." },
+      { time: "20:00", agent: "David", action: "Mail sendt via Resend til 52 abonnenter. Emne: Google satser 40 mia. USD på Anthropic." },
     ],
   },
 ];
@@ -83,8 +74,8 @@ export default function MaskinrummetPage() {
             Maskinrummet
           </h1>
           <p className="font-instrument text-base text-grey-text leading-relaxed mb-4">
-            Her er præcis hvad der skete denne uge. Hver linje er en handling udført af en agent.
-            Ingen redigering, ingen filter.
+            Denne uge producerede 6 agenter en briefing med 3 historier: Googles Anthropic-investering,
+            EU AI Act-forhandlinger og Pentagons leverandørskifte. Her er hvad der skete, time for time.
           </p>
 
           {/* Stats */}
@@ -94,7 +85,7 @@ export default function MaskinrummetPage() {
               <p className="font-instrument text-xs text-grey-text">agenter aktive</p>
             </div>
             <div className="bg-grey-subtle rounded-xl p-4 text-center">
-              <p className="font-fraunces text-2xl text-ink">17</p>
+              <p className="font-fraunces text-2xl text-ink">14</p>
               <p className="font-instrument text-xs text-grey-text">handlinger</p>
             </div>
             <div className="bg-grey-subtle rounded-xl p-4 text-center">
@@ -102,8 +93,8 @@ export default function MaskinrummetPage() {
               <p className="font-instrument text-xs text-grey-text">abonnenter</p>
             </div>
             <div className="bg-grey-subtle rounded-xl p-4 text-center">
-              <p className="font-fraunces text-2xl text-ink">62%</p>
-              <p className="font-instrument text-xs text-grey-text">åbningsrate</p>
+              <p className="font-fraunces text-2xl text-ink">$2.41</p>
+              <p className="font-instrument text-xs text-grey-text">API-omkostning</p>
             </div>
           </div>
 
@@ -111,11 +102,11 @@ export default function MaskinrummetPage() {
           <div className="flex flex-wrap gap-2 mb-10">
             {[
               { name: "Ole", emoji: "🎯", count: 3 },
-              { name: "Mathias", emoji: "🔍", count: 4 },
-              { name: "Helene", emoji: "✍️", count: 3 },
+              { name: "Mathias", emoji: "🔍", count: 3 },
+              { name: "Helene", emoji: "✍️", count: 2 },
               { name: "Diana", emoji: "🎨", count: 1 },
-              { name: "Mads", emoji: "📣", count: 4 },
-              { name: "David", emoji: "⚙️", count: 2 },
+              { name: "Mads", emoji: "📣", count: 2 },
+              { name: "David", emoji: "⚙️", count: 3 },
             ].map((a) => (
               <div key={a.name} className="flex items-center gap-2 bg-grey-subtle rounded-lg px-3 py-2">
                 <span>{a.emoji}</span>
@@ -125,7 +116,7 @@ export default function MaskinrummetPage() {
             ))}
           </div>
 
-          {/* Ugens log dag for dag */}
+          {/* Ugens log */}
           <div className="space-y-8">
             {weekLog.map((day) => (
               <div key={day.day}>
@@ -134,7 +125,7 @@ export default function MaskinrummetPage() {
                   {day.entries.map((entry, i) => (
                     <div key={i} className="flex gap-4 items-start">
                       <span className="font-instrument text-xs text-grey-text min-w-[40px] pt-1">{entry.time}</span>
-                      <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-instrument font-semibold min-w-[70px] text-center ${agentColor(entry.agent)}`}>
+                      <span className={"inline-block px-2 py-0.5 rounded-full text-xs font-instrument font-semibold min-w-[70px] text-center " + agentColor(entry.agent)}>
                         {entry.agent}
                       </span>
                       <p className="font-instrument text-sm text-ink leading-relaxed flex-1">{entry.action}</p>
@@ -149,16 +140,14 @@ export default function MaskinrummetPage() {
           <div className="mt-12 bg-blue-soft rounded-2xl p-8">
             <h2 className="font-fraunces text-xl text-ink mb-3">Hvad du ser her</h2>
             <p className="font-instrument text-sm text-grey-text leading-relaxed mb-4">
-              Hver linje er logget automatisk af den agent der udførte handlingen.
-              Loggen hentes fra Airtable og vises her uden redigering.
+              Hver linje er en handling udført af en agent. Loggen hentes fra Airtable.
             </p>
             <p className="font-instrument text-sm text-grey-text leading-relaxed mb-4">
-              Bemærk lørdag kl. 14:00: Helene afviste Mathias' historie 2 og bad ham omskrive.
-              Han leverede en ny version 90 minutter senere. Den slags redaktionel interaktion
-              sker hver uge. Agenterne er uenige, justerer og forbedrer hinandens arbejde.
+              Hele produktionen kostede $2.41 i API-forbrug. Ingen mennesker rørte teksten
+              mellem Mathias' research torsdag og Davids udsendelse søndag.
             </p>
             <p className="font-instrument text-sm text-grey-text leading-relaxed mb-6">
-              Det er den interaktion der gør det til et bureau og ikke bare en AI der skriver tekst.
+              Det er den opsætning Tullin Advisory hjælper virksomheder med at bygge.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/saadan-virker-det" className="px-5 py-2.5 bg-ink text-white rounded-lg font-instrument font-semibold text-sm hover:bg-ink/80 transition-colors text-center">
@@ -168,13 +157,6 @@ export default function MaskinrummetPage() {
                 For virksomheder
               </Link>
             </div>
-          </div>
-
-          {/* Demodata note */}
-          <div className="mt-6 text-center">
-            <p className="font-instrument text-xs text-grey-text">
-              Denne log er demodata. Når den ugentlige cyklus kører, hentes loggen automatisk fra Airtable.
-            </p>
           </div>
         </div>
       </section>
