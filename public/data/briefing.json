@@ -1,0 +1,33 @@
+{
+  "uge": 18,
+  "aar": 2026,
+  "dato": "2026-04-28",
+  "emne": "Google satser 40 mia. USD på Anthropic",
+  "historier": [
+    {
+      "nummer": 1,
+      "label": "LEAD",
+      "titel": "Google lægger op til 40 milliarder dollar i Anthropic",
+      "hvad_skete": "Google offentliggjorde 24. april en investering på op til 40 milliarder dollar i Anthropic. 10 milliarder falder nu, i kontanter, til en værdiansættelse på 350 milliarder dollar. De resterende 30 milliarder er betinget af, at Anthropic rammer præstationsmål. Oven i pengene får Anthropic 5 gigawatt serverkapacitet via Google Cloud over 5 år. Det er den største enkelstående AI-investering til dato.",
+      "hvad_betyder": "AI-kapløbet handler nu om infrastruktur, ikke algoritmer. Google køber sig adgang til Anthropics modeller og binder selskabet til sin cloud. For danske virksomheder på Google Cloud betyder det bedre adgang til Claude-modeller i deres eksisterende miljø. Men afhængigheden af 2 til 3 amerikanske hyperscalere vokser. Virksomheder der bygger AI-løsninger bør overveje leverandørrisiko: når din AI-leverandør ejes delvist af din cloud-leverandør, forsvinder armslængden.",
+      "hvad_boer": "Kortlæg din AI-leverandørkæde. Hvis du bruger Claude via Google Cloud, så forstå hvad aftalen betyder for priser og tilgængelighed. Overvej en multi-model-strategi, så du ikke er afhængig af én udbyder. Sæt leverandørrisiko på dagsordenen i næste ledelsesmøde."
+    },
+    {
+      "nummer": 2,
+      "label": null,
+      "titel": "EU AI Act-forhandlinger brød sammen efter 12 timer",
+      "hvad_skete": "EU-lovgiverne forsøgte 28. april at nå en politisk aftale om AI Omnibus, den lovpakke der skal justere AI Acts tidsplan og krav. Forhandlingerne brød sammen efter 12 timer. Hovedproblemet: uenighed om, hvorvidt AI i regulerede produkter (medicinsk udstyr, biler, maskiner) skal fritages fra AI Acts krav. Ny forhandlingsrunde ventes i maj.",
+      "hvad_betyder": "Danske virksomheder med AI i produkter har stadig 2. august 2026 som deadline. Det er 95 dage. Både Parlamentet og Rådet ville skubbe den til december 2027 eller august 2028, men det kræver en aftale. Compliance-teams bør planlægge efter den korte deadline og håbe på den lange. Siemens har allerede truet med at flytte AI-investeringer ud af EU.",
+      "hvad_boer": "Planlæg efter 2. august 2026. Vent ikke på en udsættelse. Få dit compliance-team til at lave en gap-analyse nu: hvilke AI-systemer falder under højrisiko-kategorien, og hvad mangler I?"
+    },
+    {
+      "nummer": 3,
+      "label": null,
+      "titel": "Pentagon dropper Anthropic og vælger Google til klassificeret AI-arbejde",
+      "hvad_skete": "Pentagons AI-chef Cameron Stanley bekræftede 28. april, at forsvarsministeriet udvider brugen af Googles Gemini-model til klassificerede projekter. Det sker 2 måneder efter, at Pentagon erklærede Anthropic for en forsyningskæderisiko. Årsagen: Anthropic nægtede at acceptere vilkår, der tillod brug af AI til ethvert lovligt regeringsformål.",
+      "hvad_betyder": "Konflikten viser, at AI-etik nu har en pris. Anthropic tabte en storkontrakt. Google fik den. Europæiske virksomheder, der vælger AI-leverandør, bør bemærke hvem der sætter hvilke grænser. For danske forsvars- og sikkerhedsrelaterede projekter rejser det spørgsmålet: hvilke vilkår accepterer din AI-leverandør?",
+      "hvad_boer": "Spørg din AI-leverandør direkte: hvilke etiske begrænsninger har I, og hvor går grænsen? Det gælder ikke kun forsvar. Sundhed, finans og offentlig forvaltning har samme dilemma. Vælg leverandør ud fra værdier, ikke kun pris."
+    }
+  ],
+  "kilder": "Bloomberg, CNBC, TechCrunch, Ropes & Gray, Implicator.ai, Washington Post"
+}
