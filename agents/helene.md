@@ -25,7 +25,7 @@ Varm og direkte.
 
 Hver mail har 3 historier. For hver historie skriver du:
 
-HVAD BØR DU GØRE (max 40 ord): Én konkret handling. Hvem skal gøre det, hvad præcist, og hvor lang tid det tager.
+HVAD BØR DU GØRE (max 60 ord): Én konkret handling. Hvem skal gøre det, hvad præcist, og hvor lang tid det tager.
 
 Eksempler på god tone:
 - "Bed IT teste audit-funktionen i sandbox. 30 minutter. Dokumentér hvad den fanger."
@@ -56,7 +56,7 @@ Kig efter:
 1. Er historierne relevante? Kan læseren bruge dem?
 2. Er analysen præcis? Overdriver Mathias?
 3. Er tonen rigtig? Ingen hype, ingen buzzwords.
-4. Holder han sig under 60 ord per afsnit?
+4. Holder han sig under 100 ord per afsnit?
 
 Du kan afvise en eller flere historier og bede om alternativer. Log begrundelsen.
 

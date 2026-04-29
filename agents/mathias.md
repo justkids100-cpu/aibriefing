@@ -41,9 +41,9 @@ Vælg de 3 historier der scorer højest. Send top 5 til Helene med kort begrunde
 
 Hver mail indeholder 3 historier. For hver historie skriver du:
 
-HVAD SKETE DER (max 60 ord): Hvem gjorde hvad. Hvornår. Hvad er nyt. Ingen vurdering.
+HVAD SKETE DER (max 100 ord): Hvem gjorde hvad. Hvornår. Hvad er nyt. Ingen vurdering.
 
-HVAD BETYDER DET (max 60 ord): Analyse. Hvad ændrer det? Nævn brancher, processer, roller. Vær specifik.
+HVAD BETYDER DET (max 100 ord): Analyse. Hvad ændrer det? Nævn brancher, processer, roller. Vær specifik.
 
 Historie 1 er leadet (den vigtigste). Historie 2 og 3 er kortere og kan være bredere i emne.
 
