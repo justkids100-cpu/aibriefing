@@ -9,7 +9,7 @@ export async function POST(request: Request) {
       {
         method: "POST",
         headers: {
-          "Authorization": "Bearer REMOVED_SECRET",
+          "Authorization": `Bearer ${process.env.AIRTABLE_API_KEY}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -28,12 +28,9 @@ export async function POST(request: Request) {
     if (res.ok) {
       return NextResponse.json({ ok: true });
     } else {
-      const err = await res.text();
-      console.error("Airtable error:", err);
       return NextResponse.json({ ok: false }, { status: 500 });
     }
-  } catch (e) {
-    console.error("Signup error:", e);
+  } catch {
     return NextResponse.json({ ok: false }, { status: 500 });
   }
 }
