@@ -2,35 +2,24 @@ import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import SignupForm from "./components/SignupForm";
 import Link from "next/link";
-import { promises as fs } from "fs";
-import path from "path";
+import { getLatestBriefing, getSubscriberCount } from "../lib/airtable";
 
-interface Historie {
-  nummer: number;
-  label: string | null;
-  titel: string;
-  hvad_skete: string;
-  hvad_betyder: string;
-  hvad_boer: string;
-}
+export const revalidate = 300;
 
-interface Briefing {
-  uge: number;
-  aar: number;
-  dato: string;
-  emne: string;
-  historier: Historie[];
-  kilder: string;
-}
-
-async function getBriefing(): Promise<Briefing> {
-  const filePath = path.join(process.cwd(), "public", "data", "briefing.json");
-  const raw = await fs.readFile(filePath, "utf-8");
-  return JSON.parse(raw);
+function parseSubject(subject: string): { uge: number; aar: number; emne: string } {
+  // Parse "AI Briefing uge 18: ..." format
+  const match = subject.match(/uge\s+(\d+)/i);
+  const uge = match ? parseInt(match[1]) : 0;
+  const yearMatch = subject.match(/(\d{4})/);
+  const aar = yearMatch ? parseInt(yearMatch[1]) : new Date().getFullYear();
+  const emne = subject.replace(/^AI Briefing uge \d+:\s*/i, "");
+  return { uge, aar, emne };
 }
 
 export default async function Home() {
-  const briefing = await getBriefing();
+  const briefing = await getLatestBriefing();
+  const subscriberCount = await getSubscriberCount();
+  const parsed = briefing ? parseSubject(briefing.subject) : null;
 
   return (
     <main className="min-h-screen bg-white">
@@ -51,7 +40,7 @@ export default async function Home() {
           </p>
           <div className="inline-flex items-center gap-2 bg-grey-subtle border border-grey-line rounded-full px-4 py-2 font-instrument text-sm">
             <span>⚡</span>
-            <span>Skrevet af AI-agenter. Åbent om det.</span>
+            <span>{subscriberCount > 0 ? `${subscriberCount} abonnenter` : "Skrevet af AI-agenter"}. Åbent om det.</span>
             <Link href="/saadan-virker-det" className="text-blue font-medium">Se hvordan det virker.</Link>
           </div>
         </div>
@@ -65,38 +54,21 @@ export default async function Home() {
       </section>
 
       {/* Seneste briefing */}
-      <section className="bg-grey-subtle py-16 px-6">
-        <div className="max-w-3xl mx-auto">
-          <p className="font-instrument text-sm text-blue mb-2 tracking-wide uppercase">Seneste briefing</p>
-          <h2 className="font-fraunces text-3xl text-ink mb-8">
-            Uge {briefing.uge} &middot; {briefing.aar}
-          </h2>
+      {briefing && parsed && (
+        <section className="bg-grey-subtle py-16 px-6">
+          <div className="max-w-3xl mx-auto">
+            <p className="font-instrument text-sm text-blue mb-2 tracking-wide uppercase">Seneste briefing</p>
+            <h2 className="font-fraunces text-3xl text-ink mb-8">
+              Uge {parsed.uge} &middot; {parsed.aar}
+            </h2>
 
-          {briefing.historier.map((h: Historie, i: number) => (
-            <div key={h.nummer} className={i < briefing.historier.length - 1 ? "mb-12 pb-12 border-b border-grey-line" : "mb-8"}>
-              <p className="font-instrument text-xs text-blue tracking-widest uppercase mb-2">
-                Historie {h.nummer}{h.label ? ` · ${h.label}` : ""}
-              </p>
-              <h3 className="font-fraunces text-2xl text-ink mb-6">{h.titel}</h3>
-
-              <p className="font-instrument text-xs text-grey-text tracking-wider uppercase mb-1">Hvad skete der · Mathias</p>
-              <p className="font-instrument text-base text-ink leading-relaxed mb-6">{h.hvad_skete}</p>
-
-              <p className="font-instrument text-xs text-blue tracking-wider uppercase mb-1">Hvad betyder det · Mathias</p>
-              <p className="font-instrument text-base text-ink leading-relaxed mb-6">{h.hvad_betyder}</p>
-
-              <div className="bg-blue-soft rounded-xl p-6">
-                <p className="font-instrument text-xs text-blue tracking-wider uppercase mb-1">Hvad bør du gøre · Helene</p>
-                <p className="font-instrument text-base text-ink leading-relaxed">{h.hvad_boer}</p>
-              </div>
-            </div>
-          ))}
-
-          <p className="font-instrument text-sm text-grey-text mt-4">
-            Kilder: {briefing.kilder}
-          </p>
-        </div>
-      </section>
+            <div
+              className="briefing-content font-instrument text-base text-ink leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: briefing.html }}
+            />
+          </div>
+        </section>
+      )}
 
       {/* Tullin-blok */}
       <section className="px-6 py-16">

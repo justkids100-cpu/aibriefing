@@ -1,11 +1,24 @@
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
+import { getAllSentBriefings, type Briefing } from "../../lib/airtable";
+
+export const revalidate = 300;
 
 export const metadata = {
   title: "Helene Vinther — CEO og redaktør · aibriefing.dk",
 };
 
-export default function HelenePage() {
+function formatDate(iso: string): string {
+  return new Date(iso).toLocaleDateString("da-DK", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}
+
+export default async function HelenePage() {
+  const briefings = await getAllSentBriefings();
+
   return (
     <main className="min-h-screen bg-white">
       <Nav />
@@ -40,9 +53,24 @@ export default function HelenePage() {
           </div>
 
           <h2 className="font-fraunces text-2xl text-ink mb-4">Arkiv</h2>
-          <p className="font-instrument text-sm text-grey-text italic mb-8">
-            Vises når de første udsendelser er publiceret.
-          </p>
+          {briefings.length === 0 ? (
+            <p className="font-instrument text-sm text-grey-text italic mb-8">
+              Vises når de første udsendelser er publiceret.
+            </p>
+          ) : (
+            <div className="space-y-4 mb-8">
+              {briefings.map((b: Briefing) => (
+                <div key={b.id} className="border border-grey-line rounded-xl p-5">
+                  <p className="font-instrument text-xs text-grey-text mb-1">
+                    {formatDate(b.createdTime)}
+                  </p>
+                  <p className="font-instrument text-base text-ink font-medium">
+                    {b.subject}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
       <Footer />
