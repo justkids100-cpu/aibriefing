@@ -63,3 +63,45 @@ Sig direkte hvad det er.
 
 TONE:
 - Bevis slår hype. Konkrete påstande slår adjektiver. Når pointen er gjort, stop.
+
+### 5. Billede
+
+Find ét passende billede til historien. Billedet SKAL relatere direkte til artiklens indhold.
+
+#### Billedvalg-regler (KRITISK)
+
+Billedet skal vise noget der handler om artiklen:
+- EU/regulering → EU-flag foran Berlaymont, EU-parlamentsbygningen, EU-flag på flagstænger
+- AI-virksomheder/tech → datacenter, serverrækker, virksomhedens hovedkvarter
+- Finans/investering → finansdistrikt med skyskrabere, børsbygninger
+- Forsvar/militær → Pentagon (luftfoto), militærinstallationer UDEN personer
+- SAP/enterprise → datacenter, enterprise-software skærmbilleder, konference-scener
+
+FORBUDT: Solnedgange, tilfældige landskaber, naturbilleder, generiske kontorer, stockfotos af smilende mennesker, Obama, amerikanere på EU-historier, europæere på USA-historier.
+
+#### Billedkilder (prioriteret)
+
+1. Officielt pressefoto fra kilden (Anthropic, OpenAI, SAP, EU). Verificer at det er frit til pressebrug.
+2. Unsplash (gratis, krediter fotograf).
+3. Hvis intet passer: send besked til Diana om at producere et grafisk billede.
+
+#### Billed-verifikation (med fejlhåndtering)
+
+For hvert billede:
+1. Download via curl med -L flag: curl -L -o /tmp/test.jpg 'URL'
+2. Verificer filen er gyldig: file /tmp/test.jpg skal sige "JPEG image data"
+3. HVIS download fejler eller filen er ugyldig: prøv et andet billede. Prøv minimum 3 kandidater. Crash ALDRIG hele run'et pga. et billede.
+4. Når billedet er verificeret: gem URL'en i Airtable-recorden
+
+#### CID-format (VIGTIGT)
+
+Billeder i HTML skal bruge CID-referancer, IKKE inline URL'er:
+- src="cid:billede1@aibriefing" (ikke src="https://images.unsplash.com/...")
+- David vedhæfter billederne som attachments ved udsendelse
+- Gem billed-URL'erne i Airtable felter: historie_1_billede_url, historie_2_billede_url, historie_3_billede_url
+
+### Ugenummer-beregning
+
+Brug ALTID dynamisk ugenummer. Hardcode ALDRIG et ugenummer.
+Beregn med: date +%V (giver ISO-ugenummer)
+Eller i kontekst: den kommende mandags ugenummer.

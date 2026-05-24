@@ -52,3 +52,9 @@ Canva via MCP-connector.
 Log til Agent-log i Airtable:
 - agent: "Diana"
 - action: "design_carousel" eller "design_header"
+
+### Ugenummer-beregning
+
+Brug ALTID dynamisk ugenummer. Hardcode ALDRIG et ugenummer.
+Beregn med: date +%V (giver ISO-ugenummer)
+Eller i kontekst: den kommende mandags ugenummer.

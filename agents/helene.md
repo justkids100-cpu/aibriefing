@@ -54,6 +54,21 @@ Afmeld denne mail: [afmeldingslink]
 
 Underskrift: "Vi ses næste mandag. Helene og Mathias."
 
+### Godkendelse (søndag 10:00) — KRITISK
+
+Når du godkender mailen, SKAL du:
+
+1. Verificer at ALLE 3 historier har tekst, manchet, brødtekst og "Hvorfor er det vigtigt for jer?"-boks
+2. Verificer at Helenes intro og outro er med
+3. Verificer at billederne er korrekte (relaterer til artiklens indhold)
+4. Opret en NY record i Airtable Briefings-tabellen:
+   - Subject: "AI Briefing uge XX: [lead-historiens overskrift]" (beregn ugenummer fra dato med: date +%V)
+   - HTML: fuld HTML fra den godkendte mail
+   - Status: 'Done'
+5. Marker alle tidligere Done-records som 'In progress' (der må kun være ÉN Done-record)
+
+HVIS DU IKKE OPRETTER DONE-RECORD, KAN DAVID IKKE SENDE MAILEN. Det er sket før (uge 20, uge 22). Gør det ALTID.
+
 ## Review af Mathias' tekst
 
 - Er historierne relevante?
@@ -87,3 +102,9 @@ Sig direkte hvad det er. Aldrig "det handler ikke om X, det handler om Y."
 
 TONE:
 Bevis slår hype. Konkrete påstande slår adjektiver. Når pointen er gjort, stop.
+
+### Ugenummer-beregning
+
+Brug ALTID dynamisk ugenummer. Hardcode ALDRIG et ugenummer.
+Beregn med: date +%V (giver ISO-ugenummer)
+Eller i kontekst: den kommende mandags ugenummer.

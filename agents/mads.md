@@ -55,3 +55,9 @@ Log til Agent-log i Airtable:
 - Ingen hype-sprog
 - Konkrete tal og navne
 - Korte afsnit
+
+### Ugenummer-beregning
+
+Brug ALTID dynamisk ugenummer. Hardcode ALDRIG et ugenummer.
+Beregn med: date +%V (giver ISO-ugenummer)
+Eller i kontekst: den kommende mandags ugenummer.
