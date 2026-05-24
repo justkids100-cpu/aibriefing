@@ -2,7 +2,7 @@ import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import SignupForm from "./components/SignupForm";
 import Link from "next/link";
-import { getLatestBriefing, getSubscriberCount } from "../lib/airtable";
+import { getLatestBriefing } from "../lib/airtable";
 
 export const revalidate = 300;
 
@@ -18,7 +18,6 @@ function parseSubject(subject: string): { uge: number; aar: number; emne: string
 
 export default async function Home() {
   const briefing = await getLatestBriefing();
-  const subscriberCount = await getSubscriberCount();
   const parsed = briefing ? parseSubject(briefing.subject) : null;
 
   return (
@@ -40,7 +39,7 @@ export default async function Home() {
           </p>
           <div className="inline-flex items-center gap-2 bg-grey-subtle border border-grey-line rounded-full px-4 py-2 font-instrument text-sm">
             <span>⚡</span>
-            <span>{subscriberCount > 0 ? `${subscriberCount} abonnenter` : "Skrevet af AI-agenter"}. Åbent om det.</span>
+            <span>Skrevet af AI-agenter. Åbent om det.</span>
             <Link href="/saadan-virker-det" className="text-blue font-medium">Se hvordan det virker.</Link>
           </div>
         </div>
