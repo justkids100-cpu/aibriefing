@@ -22,16 +22,31 @@ export interface Briefing {
   createdTime: string;
 }
 
+function replaceCidWithUrls(html: string, fields: Record<string, string>): string {
+  const cidMap: Record<string, string> = {
+    "cid:billede1@aibriefing": fields.historie_1_billede_url || "",
+    "cid:billede2@aibriefing": fields.historie_2_billede_url || "",
+    "cid:billede3@aibriefing": fields.historie_3_billede_url || "",
+  };
+  let result = html;
+  for (const [cid, url] of Object.entries(cidMap)) {
+    if (url) {
+      result = result.replaceAll(cid, url);
+    }
+  }
+  return result;
+}
+
 export async function getLatestBriefing(): Promise<Briefing | null> {
   const params = new URLSearchParams({
-    "filterByFormula": "{Status}='Done'",
+    "filterByFormula": "OR({Status}='Done',{Status}='Sent')",
     "sort[0][field]": "subject",
     "sort[0][direction]": "desc",
     "maxRecords": "10",
   });
   const data = await airtableFetch(BRIEFINGS_TABLE, params.toString());
   if (!data.records?.length) return null;
-  // Sort by createdTime descending to get the newest Done briefing
+  // Sort by createdTime descending to get the newest briefing
   const sorted = data.records.sort(
     (a: { createdTime: string }, b: { createdTime: string }) =>
       new Date(b.createdTime).getTime() - new Date(a.createdTime).getTime()
@@ -40,7 +55,7 @@ export async function getLatestBriefing(): Promise<Briefing | null> {
   return {
     id: r.id,
     subject: r.fields.subject || "",
-    html: r.fields.html || "",
+    html: replaceCidWithUrls(r.fields.html || "", r.fields),
     status: r.fields.Status || "",
     createdTime: r.createdTime,
   };
@@ -53,10 +68,10 @@ export async function getAllSentBriefings(): Promise<Briefing[]> {
   });
   const data = await airtableFetch(BRIEFINGS_TABLE, params.toString());
   const records = (data.records || [])
-    .map((r: { id: string; createdTime: string; fields: { subject?: string; html?: string; Status?: string } }) => ({
+    .map((r: { id: string; createdTime: string; fields: Record<string, string> }) => ({
       id: r.id,
       subject: r.fields.subject || "",
-      html: r.fields.html || "",
+      html: replaceCidWithUrls(r.fields.html || "", r.fields),
       status: r.fields.Status || "",
       createdTime: r.createdTime,
     }))
