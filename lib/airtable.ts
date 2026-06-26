@@ -20,6 +20,7 @@ export interface Briefing {
   html: string;
   status: string;
   createdTime: string;
+  sendt_tidspunkt: string;
 }
 
 function replaceCidWithUrls(html: string, fields: Record<string, string>): string {
@@ -38,47 +39,45 @@ function replaceCidWithUrls(html: string, fields: Record<string, string>): strin
 }
 
 export async function getLatestBriefing(): Promise<Briefing | null> {
+  // Kun mails der faktisk er sendt: sendt_tidspunkt er udfyldt OG ligger i fortiden
   const params = new URLSearchParams({
-    "filterByFormula": "OR({Status}='Done',{Status}='Sent')",
-    "sort[0][field]": "subject",
+    "filterByFormula": "AND({sendt_tidspunkt}!='',IS_BEFORE({sendt_tidspunkt},NOW()))",
+    "sort[0][field]": "sendt_tidspunkt",
     "sort[0][direction]": "desc",
-    "maxRecords": "10",
+    "maxRecords": "1",
   });
   const data = await airtableFetch(BRIEFINGS_TABLE, params.toString());
   if (!data.records?.length) return null;
-  // Sort by createdTime descending to get the newest briefing
-  const sorted = data.records.sort(
-    (a: { createdTime: string }, b: { createdTime: string }) =>
-      new Date(b.createdTime).getTime() - new Date(a.createdTime).getTime()
-  );
-  const r = sorted[0];
+  const r = data.records[0];
   return {
     id: r.id,
     subject: r.fields.subject || "",
     html: replaceCidWithUrls(r.fields.html || "", r.fields),
     status: r.fields.Status || "",
     createdTime: r.createdTime,
+    sendt_tidspunkt: r.fields.sendt_tidspunkt || "",
   };
 }
 
 export async function getAllSentBriefings(): Promise<Briefing[]> {
+  // Kun mails der faktisk er sendt: sendt_tidspunkt er udfyldt OG ligger i fortiden
   const params = new URLSearchParams({
-    "filterByFormula": "OR({Status}='Done',{Status}='Sent')",
+    "filterByFormula": "AND({sendt_tidspunkt}!='',IS_BEFORE({sendt_tidspunkt},NOW()))",
+    "sort[0][field]": "sendt_tidspunkt",
+    "sort[0][direction]": "desc",
     "maxRecords": "50",
   });
   const data = await airtableFetch(BRIEFINGS_TABLE, params.toString());
-  const records = (data.records || [])
-    .map((r: { id: string; createdTime: string; fields: Record<string, string> }) => ({
+  return (data.records || []).map(
+    (r: { id: string; createdTime: string; fields: Record<string, string> }) => ({
       id: r.id,
       subject: r.fields.subject || "",
       html: replaceCidWithUrls(r.fields.html || "", r.fields),
       status: r.fields.Status || "",
       createdTime: r.createdTime,
-    }))
-    .sort((a: Briefing, b: Briefing) =>
-      new Date(b.createdTime).getTime() - new Date(a.createdTime).getTime()
-    );
-  return records;
+      sendt_tidspunkt: r.fields.sendt_tidspunkt || "",
+    })
+  );
 }
 
 export interface AgentLogEntry {
